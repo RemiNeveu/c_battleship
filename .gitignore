@@ -1,0 +1,8 @@
+# vscode settings:
+.vscode/*
+
+# builds targets
+client/out/**
+client/build/**
+server/out/**
+server/build/**
