@@ -4,6 +4,14 @@
 #include "gameFunc.h"
 
 /**
+ * Display one grid.
+ * 
+ * @param grid A 2d char matrix.
+ * @param param The parameters containing the size of the grid.
+ */
+void displayGrid(char *grid, struct GameParameters param);
+
+/**
  * Displays the opponent's grid above the player's grid.
  *
  * @param playerGrid The player's grid.
