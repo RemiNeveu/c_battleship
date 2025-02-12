@@ -1,20 +1,19 @@
 #include "hmi.h"
 
-void displayGrid(char *grid, struct GameParameters param){
+void displayGrid(char *grid, struct GameParameters param) {
 
   // the abscissa indicator
   printf("    \033[1m");
-  for (short x = 1; x <= param.gridSize; ++x){
+  for (short x = 1; x <= param.gridSize; ++x) {
     // for the 1 digit number
-    if (x < 10){
-      printf("%hu ",x);
+    if (x < 10) {
+      printf("%hu ", x);
     }
     // for the two digit numbers
-    else if (x % 2 == 0 && x < 100){
-      printf("%hu  ",x);
-    }
-    else if (x % 2 == 0){
-      printf("%hu ",x);
+    else if (x % 2 == 0 && x < 100) {
+      printf("%hu  ", x);
+    } else if (x % 2 == 0) {
+      printf("%hu ", x);
     }
   }
 
@@ -23,14 +22,12 @@ void displayGrid(char *grid, struct GameParameters param){
   for (short y = 0; y < param.gridSize; ++y) {
 
     // ordinate indicator
-    if (y < 10){
-      printf("\033[1m%hu\033[0m   ",y);
-    }
-    else if( y< 100){
-      printf("\033[1m%hu\033[0m  ",y);
-    }
-    else{
-      printf("\033[1m%hu\033[0m ",y);
+    if (y < 10) {
+      printf("\033[1m%hu\033[0m   ", y);
+    } else if (y < 100) {
+      printf("\033[1m%hu\033[0m  ", y);
+    } else {
+      printf("\033[1m%hu\033[0m ", y);
     }
 
     for (short x = 0; x < param.gridSize; ++x) {
@@ -45,11 +42,11 @@ void displayGrids(char *playerGrid, char *opponentGrid,
 
   printf("\n");
   printf("opponent's grid:\n");
-  displayGrid(opponentGrid,param);
+  displayGrid(opponentGrid, param);
 
   printf("\n");
   printf("your grid:\n");
-  displayGrid(playerGrid,param);
+  displayGrid(playerGrid, param);
 }
 
 void initGrids(struct Ship shipArray[], char *playerGrid, char *opponentGrid,

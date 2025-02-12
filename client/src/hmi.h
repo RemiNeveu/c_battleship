@@ -5,7 +5,7 @@
 
 /**
  * Display one grid.
- * 
+ *
  * @param grid A 2d char matrix.
  * @param param The parameters containing the size of the grid.
  */
