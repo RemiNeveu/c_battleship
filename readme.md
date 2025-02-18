@@ -14,6 +14,9 @@ The project is organized into two main directories: client and server.
     - src/
     - out/
 
+- containers
+    - battleship-server.dockerfile
+
 ## Prerequisites
 - Unix OS (maybe, but only tested on Linux)
 - C compiler (only tested on GCC, the makefile is set to use gcc)
@@ -96,3 +99,24 @@ battleship-client <server_ip> <server_port>
 
 
 You have to connect two clients to the server in order to start a game session. The server will listen for other connections while handling currently running games.
+
+## Container
+It's possible to run the server side in a container.
+
+### build the image from the dockerfile
+```bash
+docker build -f battleship-server.dockerfile -t battleship-server-image .
+```
+
+### Start the image
+- default port (50000)
+```bash
+docker run --name battleship-server -p 50000:50000 battleship-server-image
+```
+
+- custom port
+```bash
+docker run --name battleship-server -p 40000:40000 -e SERVER_PORT=40000 battleship-server-image
+```
+
+It can also work with podman in a replacement of docker.
