@@ -105,27 +105,27 @@ It's possible to run the server side in a container.
 -> tested with docker and podman
 
 ### Run the container from the hosted image
-- On the default port
+- On the default port.
     ```bash
     docker run --name battleship-server -p 50000:50000 ghcr.io/remineveu/c_battleship_server:latest
     ```
-- On a custom port (exemple: 40000)
+- On a custom port (exemple: 40000).
     ```bash
     docker run --name battleship-server -p 40000:40000 -e SERVER_PORT=40000 ghcr.io/remineveu/c_battleship_server:latest
     ```
 
 ### build and launch from the dockerfile
-- Build the image
+- Build the image.
     ```bash
     docker build -f battleship-server.dockerfile -t battleship-server-image .
     ```
 
-- Run the container on the default port (50000)
+- Run the container on the default port (50000).
     ```bash
     docker run --name battleship-server -p 50000:50000 battleship-server-image
     ```
 
-- Run the container on a custom port (exemple: 40000)
+- Run the container on a custom port (exemple: 40000).
     ```bash
     docker run --name battleship-server -p 40000:40000 -e SERVER_PORT=40000 battleship-server-image
     ```
