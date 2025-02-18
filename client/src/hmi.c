@@ -19,7 +19,7 @@ void displayGrid(char *grid, struct GameParameters param) {
 
   // the grid
   printf("\033[0m\n");
-  for (short y = 0; y < param.gridSize; ++y) {
+  for (short y = 1; y <= param.gridSize; ++y) {
 
     // ordinate indicator
     if (y < 10) {
@@ -31,7 +31,7 @@ void displayGrid(char *grid, struct GameParameters param) {
     }
 
     for (short x = 0; x < param.gridSize; ++x) {
-      printf("%c ", *(grid + (y * param.gridSize) + x));
+      printf("%c ", *(grid + ((y - 1) * param.gridSize) + x));
     }
     printf("\n");
   }
@@ -92,16 +92,18 @@ void placeShips(int *sock, struct sockaddr_in *server,
   receiveSignal(sock, server);
 
   char answer[1 << 8];
+  short scanfResult = 0;
   // the player choose between a random and a manual placement
   do {
     printf("manual ship placement?(y/n)\n");
-    scanf("%s", answer);
-  } while (answer[0] != 'y' && answer[0] != 'n');
+    scanfResult = scanf("%s", answer);
+  } while (answer[0] != 'y' && answer[0] != 'n' && scanfResult != 1);
 
   if (answer[0] == 'y') {
     sendSignal(sock, server, TRUE);
     struct Placement placement;
     char abscissa[1 << 8], ordinate[1 << 8], direction[1 << 8];
+    short scanfResult = 0;
     enum SocketSignal isPlaced;
     for (short id = 0; id < param.nbShip; ++id) {
       isPlaced = TRUE;
@@ -120,10 +122,13 @@ void placeShips(int *sock, struct sockaddr_in *server,
         default:
           break;
         }
-        printf("Choose the coordinates of the ship size %d\nformat : "
-               "ordinate abscissa orientation (1 = vertical 0 = horizontal): ",
-               param.shipSizeArray[id]);
-        scanf("%s%s%s", abscissa, ordinate, direction);
+        do {
+          printf(
+              "\nChoose the coordinates of the ship size %d\nformat : "
+              "ordinate abscissa orientation (1 = vertical 0 = horizontal): ",
+              param.shipSizeArray[id]);
+          scanfResult = scanf("%s%s%s", abscissa, ordinate, direction);
+        } while (scanfResult != 3);
         placement.coordinates.x = atoi(abscissa) - 1;
         placement.coordinates.y = atoi(ordinate) - 1;
         placement.direction = atoi(direction);
@@ -147,6 +152,7 @@ void playerRound(int *sock, struct sockaddr_in *server, char *playerGrid,
   enum SocketSignal signal;
   struct Coordinates coord;
   char firstNumber[1 << 8], secondNumber[1 << 8];
+  short scanfResult = 0;
 
   printf("\n\nYOUR TURN ...\n");
 
@@ -156,8 +162,10 @@ void playerRound(int *sock, struct sockaddr_in *server, char *playerGrid,
   // ask the player for coordinate until they are correct
   do {
     // ask the coordinate to the player
-    printf("choose coordinates (example: 10 9):");
-    scanf("%s%s", firstNumber, secondNumber);
+    do {
+      printf("choose coordinates (example: 10 9):");
+      scanfResult = scanf("%s%s", firstNumber, secondNumber);
+    } while (scanfResult != 2);
 
     // convert numbers to  integers and send them to the server
     coord.x = atoi(firstNumber) - 1;
