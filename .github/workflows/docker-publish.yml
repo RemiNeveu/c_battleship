@@ -36,6 +36,6 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           context: .
-          file: ./containers/battleship-server.dockerfile
+          file: containers/battleship-server.dockerfile
           push: true
           tags: RemiNeveu/c-battleship-server:latest
