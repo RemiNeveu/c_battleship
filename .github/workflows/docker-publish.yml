@@ -17,6 +17,9 @@ jobs:
       # Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            containers/battleship-server.dockerfile
 
       # Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
@@ -42,4 +45,4 @@ jobs:
           context: .
           file: containers/battleship-server.dockerfile
           push: true
-          tags: RemiNeveu/c-battleship-server:latest
+          tags: ghcr.io/RemiNeveu/c-battleship-server:latest
