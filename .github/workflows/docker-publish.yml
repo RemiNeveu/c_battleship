@@ -34,6 +34,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # Extract metadata for tagging
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+
       # Build and push the Docker image using the Dockerfile
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -42,4 +49,4 @@ jobs:
           context: .
           file: containers/battleship-server.dockerfile
           push: true
-          tags: ghcr.io/RemiNeveu/c_battleship_server:latest
+          tags: ${{ steps.meta.outputs.tags }}
