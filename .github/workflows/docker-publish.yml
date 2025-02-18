@@ -42,4 +42,4 @@ jobs:
           context: .
           file: containers/battleship-server.dockerfile
           push: true
-          tags: ghcr.io/RemiNeveu/c-battleship-server:latest
+          tags: ghcr.io/RemiNeveu/c_battleship_server:latest
