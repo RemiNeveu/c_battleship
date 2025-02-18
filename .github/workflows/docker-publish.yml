@@ -17,9 +17,6 @@ jobs:
       # Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            containers/battleship-server.dockerfile
 
       # Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
