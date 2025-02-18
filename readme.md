@@ -1,6 +1,16 @@
 # Battleship Game
 This project is an implementation of the classic Battleship game in C, featuring a client-server architecture. The server waits for two clients before launching their game in a separate process, then continues accepting new connections for the next games. The size of the grids, the number and the size of the ships can be modified.
 
+## Table of Contents
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Game Parameters Configuration](#game-parameters-configuration)
+- [Building the Project](#building-the-project)
+- [Installing the Project](#install-the-project)
+- [Running the Game](#running-the-game)
+- [Container](#container)
+
+
 ## Project Structure
 The project is organized into two main directories: client and server.
 
