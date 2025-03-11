@@ -18,11 +18,13 @@ The project is organized into two main directories: client and server.
     - makefile
     - src/
     - out/
+    - build/
   
 - server/
     - makefile
     - src/
     - out/
+    - build/
 
 - containers
     - battleship-server.dockerfile
