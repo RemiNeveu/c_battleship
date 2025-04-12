@@ -1,5 +1,5 @@
 # 1st container to compile the app
-FROM debian:bookworm-slim AS builder
+FROM debian:11-slim AS builder
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -16,7 +16,7 @@ WORKDIR /app/server
 RUN make build
 
 # 2nd container to run the app
-FROM debian:bookworm-slim
+FROM debian:11-slim
 
 # Copy the built application from the builder stage
 WORKDIR /app
