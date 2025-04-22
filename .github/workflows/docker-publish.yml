@@ -4,8 +4,6 @@ on:
   schedule:
       - cron: '0 0 * * 0'
   push:
-    branches:
-      - main
     tags:
       - '*'
 
@@ -46,6 +44,7 @@ jobs:
           images: ghcr.io/remineveu/c_battleship_server
           tags: |
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
+            type=semver,pattern={{major}}.{{minor}}
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
           
 
