@@ -55,7 +55,7 @@ jobs:
           tags: |
             type=raw,value=${{ env.LATEST_TAG }}
             type=raw,value=${{ env.MAJOR_MINOR }}
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest
 
       # Build and push the Docker image using the Dockerfile
       - name: Build and push Docker image
