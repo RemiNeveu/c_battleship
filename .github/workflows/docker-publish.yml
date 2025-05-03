@@ -27,8 +27,8 @@ jobs:
         run: |
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           MAJOR_MINOR=$(echo $LATEST_TAG | sed 's/\([0-9]*\.[0-9]*\)\.[0-9]*/\1/')
-          TAGS="${LATEST_TAG},${MAJOR_MINOR},latest"
-          echo "TAGS=$TAGS" >> $GITHUB_ENV
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "MAJOR_MINOR=$MAJOR_MINOR" >> $GITHUB_ENV
 
       # Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
@@ -52,7 +52,10 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/remineveu/c_battleship_server
-          tags: ${{ env.TAGS }}
+          tags: |
+            type=raw,value=${{ env.LATEST_TAG }}
+            type=raw,value=${{ env.MAJOR_MINOR }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
       # Build and push the Docker image using the Dockerfile
       - name: Build and push Docker image
