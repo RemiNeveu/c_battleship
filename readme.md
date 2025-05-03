@@ -14,20 +14,23 @@ This project is an implementation of the classic Battleship game in C, featuring
 ## Project Structure
 The project is organized into two main directories: client and server.
 
-- client/
-    - makefile
-    - src/
-    - out/
-    - build/
-  
-- server/
-    - makefile
-    - src/
-    - out/
-    - build/
-
-- containers
-    - battleship-server.dockerfile
+```
+c_battleship/
+├── client/
+│   ├── Makefile
+│   ├── src/
+│   ├── out/
+│   └── build/
+│
+├── server/
+│   ├── Makefile
+│   ├── src/
+│   ├── out/
+│   └── build/
+│
+└── containers/
+    └── battleship-server.dockerfile
+```
 
 ## Prerequisites
 - Unix OS (maybe, but only tested on Linux)
@@ -76,7 +79,7 @@ The current user will be able to run the battleship-client command
 ### Uninstall the Client
 ```bash
 cd client/
-sudo make install
+sudo make uninstall
 ```
 
 ### Install the Server
