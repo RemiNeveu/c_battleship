@@ -2,10 +2,13 @@
 FROM debian:12-slim AS builder
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     git \
     gcc \
     make \
+    ca-certificates \
+    libc6 \
+    libc6-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the repository and build the application
@@ -31,10 +34,9 @@ USER appuser
 # Set a default port value using an environment variable
 ENV SERVER_PORT=50000
 
+EXPOSE $SERVER_PORT
 
-# Run the battleship-server with the configurable port
 CMD ./battleship-server "$SERVER_PORT"
-# CMD ["./battleship-server", "50000"]
 
 
 # Docker or podman
