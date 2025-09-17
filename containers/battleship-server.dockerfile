@@ -1,5 +1,5 @@
 # 1st container to compile the app
-FROM debian:12-slim AS builder
+FROM debian:13-slim AS builder
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -19,7 +19,7 @@ WORKDIR /app/server
 RUN make build
 
 # 2nd container to run the app
-FROM debian:12-slim
+FROM debian:13-slim
 
 # Copy the built application from the builder stage
 WORKDIR /app
